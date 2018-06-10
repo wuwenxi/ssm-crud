@@ -26,55 +26,97 @@
 
 <body>
 
-        <%--员工修改模态框部分--%>
-        <div class="modal fade" tabindex="-1" role="dialog" id="emp_update_modal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">员工修改</h4>
+            <%--消息提示--%>
+            <!-- Modal -->
+            <div class="modal fade" id="message_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="message">通知</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="form-control-static" id="message_hint"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="message_dismiss" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <%--制作具体表单   name属性：封装存储数据时  与POJO匹配 --%>
-                        <form id="emp_form_id" class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Name</label>
-                                <div class="col-sm-10">
-                                    <p class="form-control-static" id="emp_update_name"></p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="email" name="empEmail" class="form-control" id="emp_update_email" placeholder="Email@wwx.com">
-                                    <span class="help-block"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Gender</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="gender" id="emp_update_gender1" value="M"> 男
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="gender" id="emp_update_gender2" value="W"> 女
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Dept</label>
-                                <div class="col-sm-4">
-                                    <select class="form-control" name="empDid">
-                                    </select>
-                                </div>
-                            </div>
-                        </form>
+                </div>
+            </div>
+
+            <%--消息提示--%>
+            <!-- Modal -->
+            <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="delete">提示</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="form-control-static" id="delete_hint"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
+                            <button type="button" class="btn btn-primary" id="delete_dismiss">是</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" id="emp_update_save">更新</button>
+                </div>
+            </div>
+
+
+            <%--员工修改模态框部分--%>
+            <!-- Modal -->
+            <div class="modal fade" id="emp_update_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">员工更新</h4>
+                        </div>
+                        <div class="modal-body">
+                            <%--制作具体表单   name属性：封装存储数据时  与POJO匹配 --%>
+                            <form id="emp_form_id" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static" id="emp_update_name"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" name="empEmail" class="form-control" id="emp_update_email" placeholder="Email@wwx.com">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Gender</label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="empGender" id="emp_update_gender1" value="M"> 男
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="empGender" id="emp_update_gender2" value="W"> 女
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Dept</label>
+                                    <div class="col-sm-4">
+                                        <select class="form-control" name="empDid">
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="emp_update_save">更新</button>
+                        </div>
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+
 
                 <%--员工添加模态框部分--%>
         <div class="modal fade" tabindex="-1" role="dialog" id="emp_add_modal">
@@ -147,6 +189,7 @@
                 <table class="table table-hover" id="emp_tbl">
                     <thead>
                         <tr>
+                            <th><input type="checkbox" id="check_all"></th>
                             <th>#</th>
                             <th>empName</th>
                             <th>gender</th>
@@ -177,12 +220,17 @@
 
         //
         function to_page(pn){
+            //移除选中状态
+            $("#check_all").removeAttr("checked");
+
             $.ajax({
                 url:"${APP_PATH}/emp",
                 data:"pn=" + pn,
                 type:"GET",
                 success:function (result) {
+                    //所有页码
                     totalPages = result.extend.pageInfo.total;
+                    //当前页码
                     currentPages = result.extend.pageInfo.pageNum;
 
                     build_emp_table(result);
@@ -204,11 +252,7 @@
             //jQuery遍历元素
             $.each(emp,function (index,item) {
 
-                /*
-                * alter跳出弹框
-                * */
-                /*alert(item.empName);*/
-
+                var checkBokTd = $("<td><input type='checkbox' class='check_item'></td>");
                 //取出每一列数据
                 var empIdTd = $("<td></td>").append(item.empId);
                 var empNameTd = $("<td></td>").append(item.empName);
@@ -221,13 +265,14 @@
                 var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
                     .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
                 editBtn.attr("edit_id",item.empId);
-                var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm del_btn")
+                var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
                     .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
                 delBtn.attr("del_btn",item.empId);
                 var btnTd = $("<td></td>").append(editBtn).append(" ").append(delBtn);
 
                 //制作表格  appendTo:将表添加到 emp_tbl 的 tbody当中
-                $("<tr></tr>").append(empIdTd)
+                $("<tr></tr>").append(checkBokTd)
+                    .append(empIdTd)
                     .append(empNameTd)
                     .append(empGenderTd)
                     .append(empEmailTd)
@@ -302,7 +347,7 @@
 
                 numLi.click(function () {
                     to_page(item);
-                })
+                });
 
                 ul.append(numLi);
             });
@@ -497,7 +542,7 @@
                     //将数据填充在表单中
                     $("#emp_update_name").text(updateEmp.empName);
                     $("#emp_update_email").val(updateEmp.empEmail);
-                    $("#emp_update_modal input[name=gender]").val([updateEmp.empGender]);
+                    $("#emp_update_modal input[name=empGender]").val([updateEmp.empGender]);
                     $("#emp_update_modal select").val([updateEmp.empDid]);
                 }
             });
@@ -529,7 +574,7 @@
                 url:"${APP_PATH}/update/"+$(this).attr("empId"),
                 type:"PUT",
                 data:$("#emp_form_id").serialize(),
-                success:function (result) {
+                success:function () {
                     $("#emp_update_modal").modal('hide');
 
                     to_page(currentPages);
@@ -538,9 +583,91 @@
         });
 
         //单个删除按钮
-        $(document).on("click",".del_btn",function () {
+        $(document).on("click",".delete_btn",function () {
+            //弹出对话框  确认删除 发送ajax 返回数据库删除数据
 
-        })
+            //1.找到要删除员工的姓名及id
+            var empName = $(this).parents("tr").find("td:eq(2)").text();
+            var empId = $(this).attr("del_btn");
+
+            $("#delete_hint").text("是否删除【"+ empName +"】员工？");
+            $("#delete_modal").modal({
+                backdrop:'static'
+            });
+
+            //点击确定  删除员工信息
+            $("#delete_dismiss").click(function () {
+                $("#delete_modal").modal('hide');
+                //2.后台删除
+                $.ajax({
+                    url:"${APP_PATH}/delete/"+empId,
+                    type:"DELETE",
+                    success:function (result) {
+                        $("#message_hint").text(result.extend.success);
+                        $("#message_modal").modal({
+                            backdrop:'static'
+                        });
+
+                        //删除关闭按钮
+                        $("#message_dismiss").click(function () {
+                            to_page(currentPages);
+                        })
+                    }
+                })
+            })
+        });
+
+        //多个删除
+        $("#emp_del_btn").click(function () {
+            var del_id="";
+            var length=0;
+            //遍历选中的项
+            $.each($(".check_item:checked"),function () {
+                length++;
+                del_id += $(this).parents("tr").find("td:eq(1)").text()+"-";
+            });
+            //将以id-id-id-id返回的字符串 所有删去最后一个短横线
+            del_id = del_id.substring(0,del_id.length-1);
+            $("#delete_hint").text("是否删除这【"+ length +"】个员工？");
+            $("#delete_modal").modal({
+                backdrop:'static'
+            });
+
+            $("#delete_dismiss").click(function () {
+                $("#delete_modal").modal('hide')
+                $.ajax({
+                    url:"${APP_PATH}/delete/"+del_id,
+                    type:"DELETE",
+                    success:function (result) {
+                        $("#message_hint").text(result.extend.success);
+                        $("#message_modal").modal({
+                            backdrop:'static'
+                        });
+
+                        $("#message_dismiss").click(function () {
+                            to_page(currentPages);
+                        })
+
+                    }
+                })
+            })
+        });
+
+        //全选与不全选
+        $("#check_all").click(function () {
+            //attr获取自定义属性值  prop获取dom原生属性值
+            //$(this).prop("checked")  当前勾选框是否别选中
+            //如果选择  则让所有复选框都勾上
+            $(".check_item").prop("checked",$(this).prop("checked"));
+        });
+
+        //单选框
+        $(document).on("click",".check_item",function () {
+            //判断选中元素是否与复选框个数相同
+            var flag = $(".check_item:checked").length == $(".check_item").length;
+            //若所有元素都被勾中  则全选框也应该勾上 否则不勾
+            $("#check_all").prop("checked",flag);
+        });
 
     </script>
 

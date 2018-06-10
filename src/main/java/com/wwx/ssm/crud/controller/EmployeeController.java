@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,13 +29,37 @@ public class EmployeeController {
     public Msg getEmpWithJson(
             @RequestParam(value = "pn",defaultValue = "1") Integer pn){
         //查询当前传入页面，已经每一页大小
-        PageMethod.startPage(pn,5);
+        PageMethod.startPage(pn,10);
 
         List<Employee> emp = service.getAllEmp();
 
         PageInfo<Employee> page = new PageInfo<Employee>(emp,5);
 
         return Msg.success().add("pageInfo",page);
+    }
+
+    /*
+    *    单一批量删除员工
+    * */
+    @ResponseBody
+    @RequestMapping(value = "/delete/{ids}",method = RequestMethod.DELETE)
+    public Msg deleteEmp(@PathVariable("ids")String ids){
+        //判断是批量删除还是单个删除
+        //若返回字符串有-  则批量删除  否则单一删除
+        if(ids.contains("-")){
+            //以集合的方式将所有id封装
+            List<Integer> list = new ArrayList<Integer>();
+            String[] str = ids.split("-");
+            for (String id:str){
+                //转化字符串
+                list.add(Integer.parseInt(id));
+            }
+            service.deleteBatch(list);
+        }else {
+            Integer id = Integer.parseInt(ids);
+            service.deleteEmpSingle(id);
+        }
+        return Msg.success().add("success","删除成功！");
     }
 
 
