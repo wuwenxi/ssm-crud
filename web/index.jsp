@@ -58,8 +58,8 @@
                             <p class="form-control-static" id="delete_hint"></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
-                            <button type="button" class="btn btn-primary" id="delete_dismiss">是</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="delete_dismiss">确定</button>
                         </div>
                     </div>
                 </div>
@@ -626,6 +626,18 @@
                 length++;
                 del_id += $(this).parents("tr").find("td:eq(1)").text()+"-";
             });
+
+            if(length==0){
+                $("#delete_hint").text("请选择要删除员工？");
+                $("#delete_modal").modal({
+                    backdrop:'static'
+                });
+
+                $("#delete_dismiss").click(function () {
+                    $("#delete_modal").modal('hide')
+                })
+                return false;
+            }
             //将以id-id-id-id返回的字符串 所有删去最后一个短横线
             del_id = del_id.substring(0,del_id.length-1);
             $("#delete_hint").text("是否删除这【"+ length +"】个员工？");
